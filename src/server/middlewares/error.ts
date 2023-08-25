@@ -15,7 +15,7 @@ export const generalErrorHandler = (
   res: Response,
   _next: NextFunction
 ) => {
-  const errorMessage = error.message ?? "General error";
+  const errorMessage = error.message ?? "Multidimensional error";
   const statusCode = error.statusCode ?? 500;
 
   res.status(statusCode).json({ error: errorMessage });
