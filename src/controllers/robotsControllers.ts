@@ -6,7 +6,7 @@ export const getRobotsController = async (
   _req: Request,
   res: Response,
   next: NextFunction
-) => {
+): Promise<void> => {
   try {
     const robots = await Robot.find().exec();
 
