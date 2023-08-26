@@ -1,8 +1,8 @@
 import express from "express";
-import pingController from "../../controllers/ping/pingController.js";
+import { getRobotsController } from "../../controllers/robotsControllers.js";
 
 const robotsRouter = express.Router();
 
-robotsRouter.get("/", pingController);
+robotsRouter.get("/", getRobotsController);
 
 export default robotsRouter;
