@@ -4,14 +4,13 @@ import { getRobotsController } from "../../controllers/robotsControllers.js";
 
 const robotsRouter = express.Router();
 
-const options = {
+const optionsGet = {
   origin: true,
-  methods: "GET,POST",
-  preflightContinue: true,
+  methods: "GET",
+  preflightContinue: false,
   optionsSuccessStatus: 204,
-  credentials: true,
 };
 
-robotsRouter.get("/", cors(options), getRobotsController);
+robotsRouter.get("/", cors(optionsGet), getRobotsController);
 
 export default robotsRouter;
