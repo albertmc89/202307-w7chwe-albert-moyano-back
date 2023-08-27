@@ -8,17 +8,16 @@ import robotsRouter from "./routers/robotsRouters.js";
 
 const app = express();
 
-const options = {
+const corsOptions = {
   origin: true,
   methods: "GET,POST",
-  preflightContinue: true,
+  preflightContinue: false,
   optionsSuccessStatus: 204,
-  credentials: true,
 };
 
 app.use(morgan("dev"));
 
-app.use(cors(options));
+app.use(cors(corsOptions));
 
 app.use("/robots", robotsRouter);
 
