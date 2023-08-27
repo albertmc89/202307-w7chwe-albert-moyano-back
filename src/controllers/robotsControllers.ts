@@ -1,12 +1,12 @@
 import { type NextFunction, type Request, type Response } from "express";
-import CustomError from "../CustomError/CustomError";
-import Robot from "../database/models/Robot";
+import CustomError from "../CustomError/CustomError.js";
+import Robot from "../database/models/Robot.js";
 
 export const getRobotsController = async (
   _req: Request,
   res: Response,
   next: NextFunction
-) => {
+): Promise<void> => {
   try {
     const robots = await Robot.find().exec();
 
