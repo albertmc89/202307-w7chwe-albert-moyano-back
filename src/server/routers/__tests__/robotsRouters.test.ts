@@ -5,7 +5,12 @@ import app from "../..";
 import { connectToDataBase } from "../../../database/connectToDataBase.js";
 import Robot from "../../../database/models/Robot.js";
 import { type RobotStructure } from "../../../types";
-import { mockRobot1, mockRobot2, mockRobots } from "../../mocks/mockRobots.js";
+import {
+  mockRobot1,
+  mockRobot2,
+  mockRobots,
+  robotCreatedMock,
+} from "../../mocks/mockRobots.js";
 
 let server: MongoMemoryServer;
 
@@ -42,6 +47,25 @@ describe("Given a GET '/robots' endpoint", () => {
         expect(responseBody.robots[robotPosisiton]).toHaveProperty(
           "name",
           name
+        );
+      });
+    });
+  });
+
+  describe("Given a POST '/robots/create' endpoint", () => {
+    describe("When it receives a request", () => {
+      test("Then it should respond with status 201 and the new Robot created", async () => {
+        const path = "/robots/create";
+        const expectedStatus = 201;
+
+        const response = await request(app)
+          .post(path)
+          .send(robotCreatedMock)
+          .expect(expectedStatus);
+
+        expect(response.body.robot).toHaveProperty(
+          "name",
+          robotCreatedMock.name
         );
       });
     });
