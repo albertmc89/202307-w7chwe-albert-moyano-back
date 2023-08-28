@@ -41,7 +41,7 @@ export const addRobot = async (
   } catch (error) {
     const customError = new CustomError(
       "Could not create the robot",
-      400,
+      404,
       (error as Error).message
     );
 

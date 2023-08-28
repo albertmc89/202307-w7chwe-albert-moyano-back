@@ -1,7 +1,7 @@
 import { type NextFunction, type Request, type Response } from "express";
-import CustomError from "../../CustomError/CustomError.js";
-import Robot from "../../database/models/Robot.js";
-import { mockRobots } from "../../server/mocks/mockRobots.js";
+import CustomError from "../../../CustomError/CustomError.js";
+import Robot from "../../../database/models/Robot.js";
+import { mockRobots } from "../../mocks/mockRobots.js";
 import { getRobotsController } from "../robotsControllers.js";
 
 const req: Partial<Request> = {};
