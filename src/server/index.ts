@@ -3,6 +3,7 @@ import "dotenv/config";
 import express from "express";
 import morgan from "morgan";
 import pingController from "./controllers/ping/pingController.js";
+import auth from "./middlewares/auth.js";
 import { endPointNotFound, generalErrorHandler } from "./middlewares/errors.js";
 import robotsRouter from "./routers/robotsRouters.js";
 
@@ -25,9 +26,10 @@ app.use(express.json());
 
 app.use(cors(corsOptions));
 
-app.use("/robots", robotsRouter);
-
 app.get("/", pingController);
+
+app.use("/robots", auth, robotsRouter);
+app.use("/robots", robotsRouter);
 
 app.use(endPointNotFound);
 app.use(generalErrorHandler);
