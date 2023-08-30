@@ -30,12 +30,18 @@ describe("Given a generalErrorHandler middleware", () => {
       expect(res.status).toHaveBeenCalledWith(expectedStatusCode);
     });
 
-    test("Then it should respond method json with the error 'Robots not found'", () => {
-      const expectedMessage = { error: "Robots not found" };
+    test("Then it should respond method json with the error 'General error'", () => {
+      const expectedMessage = "General error";
+      const error = new Error("General error");
 
-      generalErrorHandler(customError, req as Request, res as Response, next);
+      generalErrorHandler(
+        error as CustomError,
+        req as Request,
+        res as Response,
+        next
+      );
 
-      expect(res.json).toHaveBeenCalledWith(expectedMessage);
+      expect(res.json).toHaveBeenCalledWith({ error: expectedMessage });
     });
 
     test("Then it should call its method status with code 500", () => {
